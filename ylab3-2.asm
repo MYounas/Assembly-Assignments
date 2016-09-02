@@ -35,31 +35,35 @@ int 21h
 
 ;check character
 cmp bl,65
-JNL inv
-JNG upper
+jge upper
+jmp invalid
 
 upper:
+cmp bl,91
+jg lower
 add bl,32
-dl 
+mov ah,2
+mov dl,bl
+int 21h
 jmp terminate
 
 lower:
-sub al,32
-jmp
-
-inv:
-mov ah,9
-mov dx,offset var3
-
-
-
-
-
-;subtract and mov
-mov ah,2
+cmp bl,96
+jl invalid 
+cmp bl,122
+jg invalid
 sub bl,32
+mov ah,2
 mov dl,bl
 int 21h
+jmp terminate
+
+invalid:
+mov ah,9
+mov dx,offset var3
+int 21h
+jmp terminate
+
 
 ;terminate
 terminate:
