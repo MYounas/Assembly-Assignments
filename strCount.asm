@@ -1,7 +1,7 @@
 .model small
 .stack 100h
 .data
-	temp byte "Av tm2H 1I$"
+	temp byte "Av tm2H1I$"
 	var byte "Number of vowels:$"
 	var1 byte "Number of consonants:$"
 	var3 byte "Number of digit:$"
@@ -103,14 +103,14 @@ inc_vowels:
 	jmp vowels
 
 consonants:
-mov con,lengthof temp
-dec con
-mov bl,v
-sub con,bl
-mov bl,s
-sub con,bl
-mov bl,d
-sub con,bl
+	mov con,lengthof temp
+	dec con
+	mov bl,v
+	sub con,bl
+	mov bl,s
+	sub con,bl
+	mov bl,d
+	sub con,bl
 
 term:
 mov ah,2
