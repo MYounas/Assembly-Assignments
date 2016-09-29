@@ -1,7 +1,7 @@
 .model small
 .stack 100h
 .data
-	temp byte "AAA$"
+	temp byte "Av tm2H 1I$"
 	var byte "Number of vowels:$"
 	var1 byte "Number of consonants:$"
 	var3 byte "Number of digit:$"
@@ -70,8 +70,6 @@ bahr1:
 
 vowels:
 	push cx
-	mov dl,'y'
-	int 21h
 	cmp temp[si],'A'
 	je inc_vowels
 	cmp temp[si],'a'
@@ -98,12 +96,21 @@ Loop vowels
 
 inc_vowels:
 	cmp cx,0
-	je term
+	je consonants
 	inc v	
 	inc si
-	dec cx
 	pop cx
 	jmp vowels
+
+consonants:
+mov con,lengthof temp
+dec con
+mov bl,v
+sub con,bl
+mov bl,s
+sub con,bl
+mov bl,d
+sub con,bl
 
 term:
 mov ah,2
@@ -111,6 +118,7 @@ mov ah,2
 add s,48
 add d,48
 add v,48
+add con,48
 
 mov dl,10
 int 21h
@@ -134,6 +142,14 @@ mov dl,13
 int 21h
 
 mov dl,v
+int 21h
+
+mov dl,10
+int 21h
+mov dl,13
+int 21h
+
+mov dl,con
 int 21h
 
 mov ah,4ch
