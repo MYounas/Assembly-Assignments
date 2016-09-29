@@ -1,7 +1,7 @@
 .model small
 .stack 100h
 .data
-	temp byte "Av tm2H1I$"
+	temp byte "Av t m2H1I$"
 	var byte "Number of vowels:$"
 	var1 byte "Number of consonants:$"
 	var3 byte "Number of digit:$"
@@ -125,6 +125,10 @@ int 21h
 mov dl,13
 int 21h
 
+mov ah,9
+mov dx,offset var4
+int 21h
+mov ah,2
 mov dl,s
 int 21h
 
@@ -133,6 +137,10 @@ int 21h
 mov dl,13
 int 21h
 
+mov ah,9
+mov dx,offset var3
+int 21h
+mov ah,2
 mov dl,d
 int 21h
 
@@ -141,6 +149,10 @@ int 21h
 mov dl,13
 int 21h
 
+mov ah,9
+mov dx,offset var
+int 21h
+mov ah,2
 mov dl,v
 int 21h
 
@@ -149,6 +161,10 @@ int 21h
 mov dl,13
 int 21h
 
+mov ah,9
+mov dx,offset var1
+int 21h
+mov ah,2
 mov dl,con
 int 21h
 
